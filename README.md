@@ -12,7 +12,7 @@
 
  + 这是首页比较简介
 
-![avatar](https://github.com/xurent/traval/blob/master/image/1.png)
+![Image text](https://github.com/xurent/traval/blob/master/image/1.png)
 
 ![avatar](image/2.png)
 
