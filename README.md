@@ -14,28 +14,28 @@
 
 ![Image text](https://github.com/xurent/traval/raw/master/image/1.jpg)
 
-![avatar](image/2.png)
+![avatar](https://github.com/xurent/traval/raw/master/image/2.jpg)
 
 
 ### 详情页面
 
-![avatar](image/3.png)
+![avatar](https://github.com/xurent/traval/raw/master/image/3.jpg)
 
-![avatar](image/4.png)
+![avatar](https://github.com/xurent/traval/raw/master/image/4.jpg)
 
 ### 登录页面
 
-![avatar](image/5.png)
+![avatar](https://github.com/xurent/traval/raw/master/image/5.jpg)
 
 ### 智能问答页面
 
-![avatar](image/6.png)
+![avatar](https://github.com/xurent/traval/raw/master/image/6.jpg)
 
 ### 后台管理页面与后台登录页面
 
 >  后台管理登录网址是https://hexurong.xyz/keshe/admin/layui/login.html，
 >  账号密码为：123456
 
-![avatar](image/7.png)
+![avatar](https://github.com/xurent/traval/raw/master/image/7.jpg)
 
-![avatar](image/8.png)
+![avatar](https://github.com/xurent/traval/raw/master/image/8.jpg)
