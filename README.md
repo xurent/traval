@@ -12,9 +12,9 @@
 
  + 这是首页比较简介
 
-![Image text](https://github.com/xurent/traval/tree/image/1.jpg)
+![Image text](https://github.com/xurent/traval/blob/master/image/1.jpg)
 
-![avatar](https://github.com/xurent/traval/raw/master/image/2.jpg)
+![avatar](https://github.com/xurent/traval/blob/master/image/2.jpg)
 
 
 ### 详情页面
