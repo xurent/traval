@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-12-22 13:51:41 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.xurent.keshe.model.Article" table="article">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="title" />
+        </property>
+        <property name="f_id" type="int">
+            <column name="f_id" />
+        </property>
+    </class>
+</hibernate-mapping>

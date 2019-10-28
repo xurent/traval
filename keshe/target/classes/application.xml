@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+<context:component-scan base-package="com.xurent.keshe">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+
+<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${user}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="jdbcUrl" value="${jdbcUrl}"></property>
+		<property name="driverClass" value="${driverClass}"></property>
+		 
+		<property name="initialPoolSize" value="${initialPoolSize}"></property>
+		<property name="acquireIncrement" value="${acquireIncrement}"></property>
+		<property name="minPoolSize" value="${minPoolSize}"></property>
+		<property name="maxPoolSize" value="${maxPoolSize}"></property>
+		<property name="maxStatements" value="${maxStatements}"></property>
+		<property name="maxStatementsPerConnection" value="${maxStatementsPerConnection}"></property>	
+		
+		<property name="automaticTestTable" value="${automaticTestTable}"></property>
+		<property name="testConnectionOnCheckin" value="${testConnectionOnCheckin}"></property>
+		<property name="maxIdleTimeExcessConnections" value="${maxIdleTimeExcessConnections}"></property>
+		<property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}"></property>
+		<property name="checkoutTimeout" value="${checkoutTimeout}"></property>
+		<property name="maxIdleTime" value="${maxIdleTime}"></property>
+	</bean>
+	
+	<!-- 整合hibernate的配置 -->
+  	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+  			<property name="dataSource" ref="dataSource"></property>
+  			<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+  			<!-- <property name="hibernateProperties">
+  				<props>
+  					<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+  					<prop key="hibernate.show_sql">true</prop>
+  					<prop key="hibernate.format_sql">true</prop>
+  					<prop key="hibernate.hbm2ddl.auto">update</prop>
+  				</props>
+  			</property> -->
+  			
+  			<!-- 映射关系 -->
+  			<property name="mappingLocations" value="classpath:com/xurent/keshe/model/*.hbm.xml"></property>
+  	</bean>
+  	
+  	<!-- 配置声明事务 -->
+  	
+  		<!-- 事务管理器 -->
+  		<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+  			<property name="sessionFactory" ref="sessionFactory"></property>
+  		</bean>
+  		
+  		<!-- 事务属性的配置 -->
+  		<tx:advice id="txAdvice" transaction-manager="transactionManager">
+  			<tx:attributes>
+  				<tx:method name="load" read-only="true"/>
+				<tx:method name="get*" read-only="true" /> 
+				<tx:method name="select*" read-only="true" /> 
+				<tx:method name="find*" read-only="true" /> 
+				<tx:method name="*" read-only="false" /> 
+  			</tx:attributes>
+  		</tx:advice>
+
+		<!-- 切入点配置 -->
+		<aop:config>
+			<aop:pointcut expression="execution(* com.xurent.keshe.service.*.*(..))" id="txPointcut"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+		</aop:config>
+
+
+
+</beans>
